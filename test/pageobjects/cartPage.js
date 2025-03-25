@@ -13,34 +13,27 @@ class CartPage {
     get cartIcon () {
         return $('a.shopping_cart_link')
     }
+    get checkoutBtn () {
+        return $('button#checkout')
+    }
     
 
     async addItemToCart () {
         await this.addToCartBtn.click();
     }
+    async goToCart () {
+        await this.cartIcon.click();
+    }
 
+    async cartFunctions () {
+        await this.addItemToCart();
+        await expect(this.cartIconNumber).toBeExisting();
+        // await browser.pause(3000);
 
-    // async allMenuOptions () {
-    //     await this.openHamburgerMenu();
-    //     await this.allItems.click();
-    //     await expect(this.allItems).toBeExisting();
-
-    //     await LoginPage.logout();
-    //     await expect(LoginPage.inputUsername).toBeExisting();
-
-    //     await LoginPage.login('standard_user', 'secret_sauce');
-    //     await this.openHamburgerMenu();
-
-    //     await this.addToCart.click();
-    //     await expect(this.cartIconNumber).toBeExisting();
-
-    //     await this.resetApp.click();
-    //     await expect(this.cartIcon).toBeExisting();
-
-    //     await this.about.click();
-    //     await expect(this.aboutPage).toBeExisting();
-    // }
-
+        await this.goToCart();
+        await expect(this.checkoutBtn).toBeExisting();
+        // await browser.pause(3000);
+    }
 }
 
 export default new CartPage();

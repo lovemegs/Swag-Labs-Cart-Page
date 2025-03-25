@@ -10,7 +10,8 @@ describe('My Hamburger Application', () => {
             await LoginPage.login('standard_user', 'secret_sauce');
             await expect(HomePage.shoppingCartLink).toBeExisting();
 
-            await cartPage.addItemToCart();
-            await expect(cartPage.cartIconNumber).toBeExisting();
+            // await cartPage.addItemToCart();
+            // await expect(cartPage.cartIconNumber).toBeExisting();
+            await cartPage.cartFunctions();
         })
 })
