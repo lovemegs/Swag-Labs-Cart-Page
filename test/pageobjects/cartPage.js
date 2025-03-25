@@ -24,6 +24,9 @@ class CartPage {
     get continueShoppingBtn () {
         return $('button#continue-shopping')
     }
+    get nameInputField () {
+        return $('input#first-name')
+    }
     
 
     async addItemToCart () {
@@ -38,6 +41,9 @@ class CartPage {
     }
     async continueShopping () {
         await this.continueShoppingBtn.click();
+    }
+    async checkout () {
+        await this.checkoutBtn.click();
     }
 
     async cartFunctions () {
@@ -55,6 +61,11 @@ class CartPage {
         await this.continueShopping();
         await this.goToCart();
         await expect(this.checkoutBtn).toBeExisting();
+        await browser.pause(3000)
+
+        await this.checkout();
+        await expect(this.nameInputField).toBeExisting();
+        await browser.pause(3000);
     }
 }
 
