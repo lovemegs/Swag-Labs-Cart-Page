@@ -1,4 +1,4 @@
-import { $, browser } from '@wdio/globals'
+import { $ } from '@wdio/globals'
 import { expect } from '@wdio/globals'
 
 
@@ -49,23 +49,18 @@ class CartPage {
     async cartFunctions () {
         await this.addItemToCart();
         await expect(this.cartIconNumber).toBeExisting();
-        await browser.pause(3000);
 
         await this.goToCart();
         await expect(this.checkoutBtn).toBeExisting();
-        await browser.pause(3000);
 
         await this.removeItem();
-        await browser.pause(3000);
 
         await this.continueShopping();
         await this.goToCart();
         await expect(this.checkoutBtn).toBeExisting();
-        await browser.pause(3000)
 
         await this.checkout();
         await expect(this.nameInputField).toBeExisting();
-        await browser.pause(3000);
     }
 }
 
