@@ -1,11 +1,13 @@
 import { $, browser } from '@wdio/globals'
 import { expect } from '@wdio/globals'
-import LoginPage from './login'
 
 
 class CartPage {
-    get addToCartBtn () {
+    get addToCartBtn1 () {
         return $('button#add-to-cart-sauce-labs-backpack')
+    }
+    get addToCartBtn2 () {
+        return $('button#add-to-cart-sauce-labs-bike-light')
     }
     get cartIconNumber () {
         return $('span.shopping_cart_badge')
@@ -16,23 +18,43 @@ class CartPage {
     get checkoutBtn () {
         return $('button#checkout')
     }
+    get removeItemBtn () {
+        return $('button#remove-sauce-labs-backpack')
+    }
+    get continueShoppingBtn () {
+        return $('button#continue-shopping')
+    }
     
 
     async addItemToCart () {
-        await this.addToCartBtn.click();
+        await this.addToCartBtn1.click();
+        await this.addToCartBtn2.click();
     }
     async goToCart () {
         await this.cartIcon.click();
+    }
+    async removeItem () {
+        await this.removeItemBtn.click();
+    }
+    async continueShopping () {
+        await this.continueShoppingBtn.click();
     }
 
     async cartFunctions () {
         await this.addItemToCart();
         await expect(this.cartIconNumber).toBeExisting();
-        // await browser.pause(3000);
+        await browser.pause(3000);
 
         await this.goToCart();
         await expect(this.checkoutBtn).toBeExisting();
-        // await browser.pause(3000);
+        await browser.pause(3000);
+
+        await this.removeItem();
+        await browser.pause(3000);
+
+        await this.continueShopping();
+        await this.goToCart();
+        await expect(this.checkoutBtn).toBeExisting();
     }
 }
 
